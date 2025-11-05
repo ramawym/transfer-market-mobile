@@ -8,9 +8,9 @@ class MyHomePage extends StatelessWidget {
   final String kelas = "F";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("All Products", Icons.apps_rounded),
-    ItemHomepage("My Products", Icons.person_2_rounded),
-    ItemHomepage("Create Products", Icons.add_rounded),
+    ItemHomepage("All Products", Icons.apps_rounded, Colors.blue),
+    ItemHomepage("My Products", Icons.person_2_rounded, Colors.green),
+    ItemHomepage("Create Products", Icons.add_rounded, Colors.red),
   ];
 
   @override
@@ -128,8 +128,9 @@ class InfoCard extends StatelessWidget {
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
@@ -143,7 +144,7 @@ class ItemCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       // Menentukan warna latar belakang dari tema aplikasi.
-      color: Theme.of(context).colorScheme.secondary,
+      color: item.color,
       // Membuat sudut kartu melengkung.
       borderRadius: BorderRadius.circular(12),
 
@@ -154,7 +155,7 @@ class ItemCard extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}!")));
+                content: Text("Kamu telah menekan tombol ${item.name}")));
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(

@@ -19,3 +19,20 @@ BuildContext adalah sebuah objek yang merepresentasikan "lokasi" atau "alamat" u
  
 ### Konsep "hot reload" di Flutter dan bagaimana bedanya dengan "hot restart"
 Hot Reload adalah fitur pengembangan super cepat yang menyuntikkan file kode baru ke dalam Dart Virtual Machine (VM) yang sedang berjalan, memungkinkan developer melihat perubahan UI secara instan (biasanya di bawah satu detik) tanpa kehilangan state aplikasi (misalnya, data yang sedang diketik di form tetap ada). Sebaliknya, Hot Restart akan memuat ulang kode aplikasi, namun ia menghancurkan state aplikasi dan memulai ulang aplikasi dari awal (mirip seperti menutup dan membuka aplikasi lagi, namun jauh lebih cepat daripada full restart). Hot Restart digunakan ketika perubahan kode terlalu fundamental untuk ditangani Hot Reload, seperti mengubah state global atau struktur main().
+
+## Tugas 8
+
+### Jelaskan perbedaan antara Navigator.push() dan Navigator.pushReplacement() pada Flutter. Dalam kasus apa sebaiknya masing-masing digunakan pada aplikasi Football Shop kamu?
+- Navigator.push() menambahkan halaman baru ke atas tumpukan navigasi, sehingga pengguna dapat kembali ke halaman sebelumnya dengan tombol back. 
+- Navigator.pushReplacement() mengganti halaman saat ini dengan halaman baru, menghapus halaman sebelumnya dari tumpukan, sehingga pengguna tidak dapat kembali. 
+
+Pada aplikasi Transfer Market, Navigator.push() digunakan untuk navigasi ke halaman tambah produk dari halaman utama, karena pengguna mungkin ingin kembali setelah menambah produk. Navigator.pushReplacement() bisa digunakan saat login/logout untuk mencegah kembali ke halaman login setelah berhasil masuk.
+
+### Bagaimana kamu memanfaatkan hierarchy widget seperti Scaffold, AppBar, dan Drawer untuk membangun struktur halaman yang konsisten di seluruh aplikasi?
+Scaffold menyediakan struktur dasar halaman dengan AppBar di atas dan body di tengah, serta drawer untuk navigasi. AppBar menampilkan judul halaman dengan warna konsisten dari tema aplikasi. Drawer berisi menu navigasi yang dapat diakses dari semua halaman, memungkinkan perpindahan antar halaman utama dan tambah produk. Hierarki ini memastikan konsistensi visual dan fungsionalitas di seluruh aplikasi, dengan tema warna yang diwariskan dari MaterialApp.
+
+### Dalam konteks desain antarmuka, apa kelebihan menggunakan layout widget seperti Padding, SingleChildScrollView, dan ListView saat menampilkan elemen-elemen form? Berikan contoh penggunaannya dari aplikasi kamu.
+Padding memberikan ruang di sekitar elemen untuk menghindari tampilan yang terlalu padat dan meningkatkan readability. SingleChildScrollView memungkinkan konten form dapat di-scroll jika melebihi tinggi layar, mencegah overflow dan memastikan semua elemen dapat diakses. ListView berguna untuk daftar elemen dinamis, namun pada form statis, Column dengan Padding sudah cukup. Pada halaman tambah produk, SingleChildScrollView membungkus Column form untuk scrollability, Padding digunakan di sekitar form dan antar elemen untuk spacing yang baik.
+
+### Bagaimana kamu menyesuaikan warna tema agar aplikasi konsisten dengan brand toko?
+Tema aplikasi disesuaikan melalui ThemeData di MaterialApp dengan colorScheme yang menggunakan primarySwatch Colors.blueGrey dan secondary Colors.blueAccent[400]. Warna ini konsisten dengan AppBar dan Drawer. ItemCard menggunakan warna spesifik per item (biru, hijau, merah).

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:transfer_market/product_form.dart';
+import 'package:transfer_market/widgets/left_drawer.dart';
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
@@ -28,6 +30,7 @@ class MyHomePage extends StatelessWidget {
         // Warna latar belakang AppBar diambil dari skema warna tema aplikasi.
         backgroundColor: Theme.of(context).colorScheme.primary,
       ),
+      drawer: LeftDrawer(),
       // Body halaman dengan padding di sekelilingnya.
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -151,11 +154,18 @@ class ItemCard extends StatelessWidget {
       child: InkWell(
         // Aksi ketika kartu ditekan.
         onTap: () {
-          // Menampilkan pesan SnackBar saat kartu ditekan.
-          ScaffoldMessenger.of(context)
-            ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu telah menekan tombol ${item.name}")));
+          if (item.name == "Create Products") {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductFormPage()),
+            );
+          } else {
+            // Menampilkan pesan SnackBar saat kartu ditekan.
+            ScaffoldMessenger.of(context)
+              ..hideCurrentSnackBar()
+              ..showSnackBar(SnackBar(
+                  content: Text("Kamu telah menekan tombol ${item.name}")));
+          }
         },
         // Container untuk menyimpan Icon dan Text
         child: Container(

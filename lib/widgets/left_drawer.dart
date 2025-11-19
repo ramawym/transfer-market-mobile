@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:transfer_market/screens/menu.dart';
-import 'package:transfer_market/product_form.dart'; // Sebelumnya newslist_form.dart
-import 'package:transfer_market/screens/product_list.dart'; // Sebelumnya news_entry_list.dart
+import 'package:transfer_market/product_form.dart'; 
+import 'package:transfer_market/screens/product_list.dart'; 
 
 class LeftDrawer extends StatelessWidget {
   const LeftDrawer({super.key});
@@ -28,7 +28,7 @@ class LeftDrawer extends StatelessWidget {
                 ),
                 Padding(padding: EdgeInsets.all(10)),
                 Text(
-                  "Bursa transfer pemain terlengkap!",
+                  "Merchandise Olahraga terlengkap!",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15,
@@ -51,8 +51,8 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.person_add),
-            title: const Text('Tambah Pemain'),
+            leading: const Icon(Icons.add_shopping_cart),
+            title: const Text('Tambah Produk'),
             onTap: () {
               Navigator.push(
                 context,
@@ -61,8 +61,8 @@ class LeftDrawer extends StatelessWidget {
             },
           ),
           ListTile(
-            leading: const Icon(Icons.people_alt),
-            title: const Text('Daftar Pemain'),
+            leading: const Icon(Icons.store),
+            title: const Text('Daftar Produk'),
             onTap: () {
               Navigator.push(
                 context,

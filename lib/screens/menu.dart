@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:transfer_market/widgets/left_drawer.dart';
-import 'package:transfer_market/widgets/menu_card.dart'; // Sebelumnya news_card.dart
+import 'package:transfer_market/widgets/menu_card.dart'; 
 
 class MyHomePage extends StatelessWidget {
   MyHomePage({super.key});
 
-  final String nama = "Nama Admin Club"; // Sesuaikan
+  final String nama = "Walyul'ahdi Maulana Ramadhan"; 
   final String npm = "2406426012";
   final String kelas = "F";
 
   final List<ItemHomepage> items = [
-    ItemHomepage("Lihat Pemain", Icons.people),
-    ItemHomepage("Tambah Pemain", Icons.person_add),
-    ItemHomepage("Logout", Icons.logout),
+    ItemHomepage("Lihat Produk", Icons.store, Colors.blue), 
+    ItemHomepage("Tambah Produk", Icons.add_shopping_cart, Colors.green), 
+    ItemHomepage("Logout", Icons.logout, Colors.red),
   ];
 
   @override

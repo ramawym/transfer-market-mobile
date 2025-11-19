@@ -10,7 +10,7 @@ class ProductDetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Player Detail'),
+        title: const Text('Detail Produk'), 
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -28,7 +28,7 @@ class ProductDetailPage extends StatelessWidget {
                 errorBuilder: (context, error, stackTrace) => Container(
                   height: 300,
                   color: Colors.grey[300],
-                  child: const Center(child: Icon(Icons.person, size: 80)),
+                  child: const Center(child: Icon(Icons.shopping_bag, size: 80)),
                 ),
               ),
 
@@ -51,7 +51,7 @@ class ProductDetailPage extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '€${product.price}',
+                        'Rp ${product.price}', 
                         style: const TextStyle(
                           fontSize: 24.0,
                           color: Colors.green,
@@ -73,7 +73,7 @@ class ProductDetailPage extends StatelessWidget {
                           borderRadius: BorderRadius.circular(20.0),
                         ),
                         child: Text(
-                          product.category,
+                          product.category[0].toUpperCase() + product.category.substring(1),
                           style: TextStyle(
                             color: Colors.indigo.shade700,
                             fontWeight: FontWeight.bold,
@@ -98,7 +98,7 @@ class ProductDetailPage extends StatelessWidget {
                   
                   const SizedBox(height: 20),
                   const Text(
-                    "Description",
+                    "Deskripsi Produk", 
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(height: 8),
@@ -114,12 +114,12 @@ class ProductDetailPage extends StatelessWidget {
                       child: Container(
                         width: double.infinity,
                         padding: const EdgeInsets.all(12),
-                        color: Colors.amber.withOpacity(0.2),
+                        color: Colors.red.withOpacity(0.2), 
                         child: const Text(
-                          "⭐ This player is a Star Player!",
+                          "🔥 Produk Best Seller!", 
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Colors.amber,
+                            color: Colors.red,
                             fontWeight: FontWeight.bold,
                             fontSize: 16,
                           ),

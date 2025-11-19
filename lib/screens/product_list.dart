@@ -15,7 +15,6 @@ class ProductListPage extends StatefulWidget {
 
 class _ProductListPageState extends State<ProductListPage> {
   Future<List<ProductEntry>> fetchProducts(CookieRequest request) async {
-    // Pastikan URL endpoint JSON di Django sesuai (misal: /json/ atau /api/products/)
     final response = await request.get('http://localhost:8000/json/');
 
     var data = response;
@@ -23,7 +22,8 @@ class _ProductListPageState extends State<ProductListPage> {
     List<ProductEntry> listProduct = [];
     for (var d in data) {
       if (d != null) {
-        listProduct.add(ProductEntry.fromJson(d));
+        // Menggunakan ProductEntry.fromJson
+        listProduct.add(ProductEntry.fromJson(d)); 
       }
     }
     return listProduct;
@@ -34,7 +34,7 @@ class _ProductListPageState extends State<ProductListPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Market List'),
+        title: const Text('Daftar Produk'),
       ),
       drawer: const LeftDrawer(),
       body: FutureBuilder(
@@ -43,12 +43,15 @@ class _ProductListPageState extends State<ProductListPage> {
           if (snapshot.data == null) {
             return const Center(child: CircularProgressIndicator());
           } else {
-            if (!snapshot.hasData) {
+            if (!snapshot.hasData || snapshot.data!.isEmpty) { 
               return const Column(
                 children: [
-                  Text(
-                    'Belum ada pemain di bursa transfer.',
-                    style: TextStyle(fontSize: 20, color: Color(0xff59A5D8)),
+                  Padding(
+                    padding: EdgeInsets.only(top: 16.0),
+                    child: Text(
+                      'Belum ada produk di toko ini.', 
+                      style: TextStyle(fontSize: 20, color: Color(0xff59A5D8)),
+                    ),
                   ),
                   SizedBox(height: 8),
                 ],
@@ -59,6 +62,7 @@ class _ProductListPageState extends State<ProductListPage> {
                 itemBuilder: (_, index) => ProductCard(
                   product: snapshot.data![index],
                   onTap: () {
+                    // Navigate to product detail page
                     Navigator.push(
                       context,
                       MaterialPageRoute(

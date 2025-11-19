@@ -2,14 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:transfer_market/screens/login.dart';
 import 'package:pbp_django_auth/pbp_django_auth.dart';
 import 'package:provider/provider.dart';
-import 'package:transfer_market/product_form.dart'; // Form Pemain
-import 'package:transfer_market/screens/product_list.dart'; // List Pemain
+import 'package:transfer_market/product_form.dart';
+import 'package:transfer_market/screens/product_list.dart';
 
 class ItemHomepage {
   final String name;
   final IconData icon;
+  final Color color;
 
-  ItemHomepage(this.name, this.icon);
+  ItemHomepage(this.name, this.icon, this.color);
 }
 
 class ItemCard extends StatelessWidget {
@@ -27,19 +28,18 @@ class ItemCard extends StatelessWidget {
         onTap: () async {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
-            ..showSnackBar(SnackBar(
-                content: Text("Kamu menekan ${item.name}!")));
+            ..showSnackBar(
+                SnackBar(content: Text("Kamu menekan ${item.name}!")));
 
-          if (item.name == "Tambah Pemain") {
+          if (item.name == "Tambah Produk") {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const ProductFormPage()),
             );
-          } else if (item.name == "Lihat Pemain") {
+          } else if (item.name == "Lihat Produk") {
             Navigator.push(
               context,
-              MaterialPageRoute(
-                  builder: (context) => const ProductListPage()),
+              MaterialPageRoute(builder: (context) => const ProductListPage()),
             );
           } else if (item.name == "Logout") {
             final response =

@@ -35,7 +35,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
     final request = context.watch<CookieRequest>();
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Form Tambah Pemain')),
+        title: const Center(child: Text('Form Tambah Produk')), 
         backgroundColor: Colors.indigo,
         foregroundColor: Colors.white,
       ),
@@ -50,8 +50,8 @@ class _ProductFormPageState extends State<ProductFormPage> {
               // Name
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "Nama Pemain",
-                  labelText: "Nama Pemain",
+                  hintText: "Nama Produk", 
+                  labelText: "Nama Produk", 
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -74,7 +74,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                  hintText: "Harga Pasar (Euro)",
+                  hintText: "Harga Produk (Rp)",
                   labelText: "Harga",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -98,34 +98,36 @@ class _ProductFormPageState extends State<ProductFormPage> {
               const SizedBox(height: 12),
 
               // Description
-              TextFormField(
-                maxLines: 3,
-                decoration: InputDecoration(
-                  hintText: "Deskripsi Pemain (Statistik, dll)",
-                  labelText: "Deskripsi",
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(5.0),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 12.0),
+                child: TextFormField(
+                  maxLines: 3,
+                  decoration: InputDecoration(
+                    hintText: "Deskripsi Produk", 
+                    labelText: "Deskripsi",
+                    border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(5.0),
+                    ),
                   ),
+                  onChanged: (String? value) {
+                    setState(() {
+                      _description = value!;
+                    });
+                  },
+                  validator: (String? value) {
+                    if (value == null || value.isEmpty) {
+                      return "Deskripsi tidak boleh kosong!";
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (String? value) {
-                  setState(() {
-                    _description = value!;
-                  });
-                },
-                validator: (String? value) {
-                  if (value == null || value.isEmpty) {
-                    return "Deskripsi tidak boleh kosong!";
-                  }
-                  return null;
-                },
               ),
-              const SizedBox(height: 12),
 
               // Rating
               TextFormField(
                 keyboardType: const TextInputType.numberWithOptions(decimal: true),
                 decoration: InputDecoration(
-                  hintText: "Rating (0.0 - 10.0)",
+                  hintText: "Rating (0.0 - 5.0)",
                   labelText: "Rating",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -140,6 +142,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   if (value == null || value.isEmpty) {
                     return "Rating tidak boleh kosong!";
                   }
+                  if (double.tryParse(value) == null) {
+                    return "Rating harus berupa angka desimal!";
+                  }
                   return null;
                 },
               ),
@@ -148,7 +153,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
               // Category
               DropdownButtonFormField<String>(
                 decoration: InputDecoration(
-                  labelText: "Posisi",
+                  labelText: "Kategori Produk",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
                   ),
@@ -157,7 +162,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                 items: _categories.map((String val) {
                   return DropdownMenuItem(
                     value: val,
-                    child: Text(val),
+                    child: Text(val[0].toUpperCase() + val.substring(1)),
                   );
                 }).toList(),
                 onChanged: (String? newValue) {
@@ -171,7 +176,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
               // Thumbnail
               TextFormField(
                 decoration: InputDecoration(
-                  hintText: "URL Foto Pemain",
+                  hintText: "URL Foto Produk", 
                   labelText: "URL Foto",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(5.0),
@@ -187,7 +192,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
 
               // Is Featured
               SwitchListTile(
-                title: const Text("Tandai sebagai Star Player"),
+                title: const Text("Tandai sebagai Best Seller"), 
                 value: _isFeatured,
                 onChanged: (bool value) {
                   setState(() {
@@ -195,9 +200,9 @@ class _ProductFormPageState extends State<ProductFormPage> {
                   });
                 },
               ),
-
-              const SizedBox(height: 24),
               
+              const SizedBox(height: 24),
+
               // Submit Button
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -221,7 +226,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                     if (context.mounted) {
                       if (response['status'] == 'success') {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Pemain berhasil ditambahkan!"),
+                          content: Text("Produk berhasil ditambahkan!"),
                         ));
                         Navigator.pushReplacement(
                           context,
@@ -229,7 +234,7 @@ class _ProductFormPageState extends State<ProductFormPage> {
                         );
                       } else {
                         ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-                          content: Text("Gagal menambahkan pemain."),
+                          content: Text("Gagal menambahkan produk."),
                         ));
                       }
                     }

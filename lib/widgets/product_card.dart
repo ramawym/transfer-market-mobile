@@ -41,14 +41,14 @@ class ProductCard extends StatelessWidget {
                           errorBuilder: (context, error, stackTrace) => Container(
                             height: 150,
                             color: Colors.grey[300],
-                            child: const Center(child: Icon(Icons.broken_image)),
+                            child: const Center(child: Icon(Icons.image_not_supported, size: 50)),
                           ),
                         )
                       : Container(
                           height: 150,
                           width: double.infinity,
                           color: Colors.grey[300],
-                          child: const Center(child: Icon(Icons.person, size: 50)),
+                          child: const Center(child: Icon(Icons.shopping_bag, size: 50)), // Icon Diperbarui
                         ),
                 ),
                 const SizedBox(height: 8),
@@ -68,11 +68,11 @@ class ProductCard extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Posisi: ${product.category}',
+                      'Kategori: ${product.category}', 
                       style: TextStyle(color: Colors.grey[600]),
                     ),
                     Text(
-                      '€${product.price}', // Format mata uang sederhana
+                      'Rp ${product.price}', 
                       style: const TextStyle(
                         color: Colors.green,
                         fontWeight: FontWeight.bold,
@@ -108,9 +108,9 @@ class ProductCard extends StatelessWidget {
                   const Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text(
-                      'Star Player',
+                      'Best Seller',
                       style: TextStyle(
-                          color: Colors.amber, fontWeight: FontWeight.bold),
+                          color: Colors.red, fontWeight: FontWeight.bold),
                     ),
                   ),
               ],
